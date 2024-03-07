@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Book;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class CollectionController extends Controller
 {
     /**
@@ -12,7 +13,11 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::user()->id;
+        $data = Collection::with('book')->where('user_id', $userId)->get();
+
+        return view('collection.index', compact('data'));
+        
     }
 
     /**

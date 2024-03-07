@@ -280,17 +280,6 @@
     <script>
         $('#editModal').on('shown.bs.modal', function(e) {
 
-            var encodedReviewData = $(e.relatedTarget).data('review');
-
-            // Decode HTML entities back to their original characters
-            var decodedReviewData = $("<div/>").html(encodedReviewData).text();
-
-            // Parse the JSON string to an actual JavaScript object
-            var reviewData = JSON.parse(decodedReviewData);
-
-            // Now you can use `reviewData` as a JavaScript object
-            console.log(reviewData); // For debugging, to see the parsed data
-
             var html = `
         <div class="modal-content" id="modal-content">
                 <div class="modal-body" style="height: 600px">
@@ -321,17 +310,6 @@
             `;
 
             $('#modal-content').html(html);
-            reviewData.forEach(function(review) {
-                var reviewElement = `
-                <div class="d-flex align-items-center mb-2">
-                    <img src="{{ asset('assets/img/user.png') }}" alt="" style="width: 24px; height: 24px">
-                    <p class="ms-2 mb-0" style="color: #1A1C19; font-size: 14px">
-                        ${review.review}
-                    </p>
-                </div>
-                `;
-                $('#review').append(reviewElement);
-            });
 
         });
     </script>

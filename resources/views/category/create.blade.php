@@ -2,85 +2,30 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-    <form action="{{ route('book.store') }}" method="post"  enctype="multipart/form-data" class="mb-3 mt-4">
-        @csrf
-        <div class="row">
-        <div class="col-6">
+        <form action="{{ route('category.store') }}" method="post" class="mb-3 mt-4">
+            @csrf
             <div class="mb-3">
-            <label for="" class="form-label"
-                >Judul</label
-            >
-            <input
+              <label for="" class="form-label"
+                >Name Category</label
+              >
+              <input
                 type="text"
                 class="form-control"
-                name="title"
-                aria-describedby="title"
-                placeholder="Masukan Judul"
-            />
+                name="name"
+                aria-describedby="Name Category"
+                placeholder="Masukan Nama Kategori"
+              />
             </div>
-        </div>
-        <div class="col-6">
-            <div class="mb-3">
-            <label for="" class="form-label"
-                >Penulis</label
+      
+      
+            <button
+              type="submit"
+              class="btn text-white mb-5"
+              style="background-color: #B46060"
             >
-            <input
-                type="text"
-                class="form-control"
-                name="writer"
-                aria-describedby="writer"
-                placeholder="Masukan Penulis"
-            />
-            </div>
-    
-        </div>
-        </div>
-
-        <div class="mb-3">
-        <label for="" class="form-label"
-            >Upload Image</label
-        >
-        <input type="file" name="image" class="form-control" id="inputGroupFile02">
-        </div>
-
-        <div class="row">
-        <div class="col-6">
-            <div class="mb-3">
-            <label for="" class="form-label"
-                >Penerbit</label
-            >
-            <input
-                type="text"
-                class="form-control"
-                name="publisher"
-                aria-describedby="publisher"
-                placeholder="Masukan Penerbit"
-            />
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="mb-3">
-            <label for="" class="form-label"
-                >Tahun terbit</label
-            >
-            <input
-                type="date"
-                class="form-control"
-                name="year"
-                aria-describedby="year"
-                placeholder="Masukan Tahun Terbit"
-            />
-            </div>
-        </div>
-        </div>
-        <button
-        type="submit"
-        class="btn text-white mb-5"
-        style="background-color: #B46060"
-        >
-        Submit
-        </button>
-    </form>
+              Submit
+            </button>
+          </form>
     </div>
 </div>
 @endsection

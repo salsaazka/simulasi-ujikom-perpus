@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\isLogin;
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +50,8 @@ Route::middleware('isLogin')->prefix('/borrow')->name('borrow.')->group(function
     Route::get('/', [BorrowController::class, 'index'])->name('index');
     Route::get('/create-borrow', [BorrowController::class, 'create'])->name('create');
     Route::post('/create-borrow', [BorrowController::class, 'store'])->name('store');
+    Route::post('/borrow', [BorrowController::class, 'borrowBook'])->name('borrowBook');
+    Route::post('/return', [BorrowController::class, 'returnBook'])->name('returnBook');
     Route::get('/edit/{id}', [BorrowController::class, 'edit'])->name('edit');
     Route::patch('/update/{id}', [BorrowController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [BorrowController::class, 'destroy'])->name('destroy');
@@ -59,6 +64,24 @@ Route::middleware('isLogin')->prefix('/category')->name('category.')->group(func
     Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
     Route::patch('/update/{id}', [CategoryController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware('isLogin')->prefix('/collection')->name('collection.')->group(function () {
+    Route::get('/', [CollectionController::class, 'index'])->name('index');
+    Route::get('/create-collection', [CollectionController::class, 'create'])->name('create');
+    Route::post('/create-collection', [CollectionController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [CollectionController::class, 'edit'])->name('edit');
+    Route::patch('/update/{id}', [CollectionController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [CollectionController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware('isLogin')->prefix('/review')->name('review.')->group(function () {
+    Route::get('/', [ReviewController::class, 'index'])->name('index');
+    Route::get('/create-review', [ReviewController::class, 'create'])->name('create');
+    Route::post('/create-review', [ReviewController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [ReviewController::class, 'edit'])->name('edit');
+    Route::patch('/update/{id}', [ReviewController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [ReviewController::class, 'destroy'])->name('destroy');
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

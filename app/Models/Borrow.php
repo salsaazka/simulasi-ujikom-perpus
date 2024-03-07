@@ -11,7 +11,6 @@ class Borrow extends Model
     protected $fillable = [
         'user_id',
         'book_id',
-        'writer',
         'start_date',
         'end_date',
         'status',

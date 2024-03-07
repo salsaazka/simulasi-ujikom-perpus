@@ -70,9 +70,8 @@ class AuthController extends Controller
     public function dashboard()
     {
         $dataOffice = User::where('role', 'officer')->get();
-
-        $bookIdsInCollection = Collection::pluck('book_id');
-        $booksNotInCollection = Book::whereNotIn('id', $bookIdsInCollection)->get();
+        $bookId = Collection::pluck('book_id');
+        $booksNotInCollection = Book::whereNotIn('id', $bookId)->get();
         $bookFilter = $booksNotInCollection;
         $review = Review::get();
 

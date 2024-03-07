@@ -12,7 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $dataCategory = Category::all();
+        return view('category.index', compact('dataCategory'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -28,7 +29,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+        ]);
+        return redirect()->route('category.index')->with('add', 'Data Peminjaman berhasil ditambahkan');
     }
 
     /**
@@ -42,24 +50,33 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $dataCategory = Category::where('id', $id)->first();
+        return view('category.edit', compact('dataCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        Category::where('id', $id)->update([
+            'name' => $request->name,
+        ]);
+        return redirect()->route('category.index')->with('add', 'Data Peminjaman berhasil ditambahkan');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        Category::where('id', $id)->delete();
+        return redirect()->route('category.index')->with('deleteCa', 'Data Peminjaman berhasil ditambahkan');
     }
 }
